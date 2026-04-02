@@ -33,8 +33,8 @@ export class NextPageComponent implements OnInit {
 
     this.isMoving = true;
 
-    this.noX = Math.floor(Math.random() * 1400);
-    this.noY = Math.floor(Math.random() * 650);
+    this.noX = Math.floor(Math.random() * 800);
+    this.noY = Math.floor(Math.random() * 500);
   }
 
   yesClicked() {
