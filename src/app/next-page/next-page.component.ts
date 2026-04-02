@@ -28,14 +28,26 @@ export class NextPageComponent implements OnInit {
     }, 5000);
   }
 
-  moveNoButton() {
-    if (!this.isEnabled || this.isLocked) return;
+ moveNoButton(event: MouseEvent) {
+  if (!this.isEnabled || this.isLocked) return;
 
-    this.isMoving = true;
+  this.isMoving = true;
 
-    this.noX = Math.floor(Math.random() * 1400);
-    this.noY = Math.floor(Math.random() * 650);
-  }
+  const box = (event.target as HTMLElement).parentElement;
+  if (!box) return;
+
+  const rect = box.getBoundingClientRect();
+
+  const mouseX = event.clientX - rect.left;
+  const mouseY = event.clientY - rect.top;
+
+  // Move AWAY from cursor
+  const offsetX = mouseX < rect.width / 2 ? 300 : -300;
+  const offsetY = mouseY < rect.height / 2 ? 200 : -200;
+
+  this.noX = Math.max(0, Math.min(rect.width - 100, mouseX + offsetX));
+  this.noY = Math.max(0, Math.min(rect.height - 50, mouseY + offsetY));
+}
 
   yesClicked() {
     if (!this.isEnabled) return;

@@ -13,7 +13,7 @@
     <button
       class="no-btn"
       [ngClass]="{ 'moving': isMoving }"
-      (mouseover)="moveNoButton()"
+      (mouseover)="moveNoButton($event)"
       [style.left.px]="isMoving ? noX : null"
       [style.top.px]="isMoving ? noY : null"
       [disabled]="isLocked">
